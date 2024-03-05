@@ -2,7 +2,6 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import (
-    SubscriptionType,
     Subscription,
     Visitor,
     TrainingType,
@@ -11,7 +10,6 @@ from .models import (
     Signup,
 )
 from .serializers import (
-    SubscriptionTypeSerializer,
     SubscriptionSerializer,
     VisitorSerializer,
     TrainingTypeSerializer,
@@ -19,11 +17,6 @@ from .serializers import (
     TrainingSerializer,
     SignupSerializer,
 )
-
-
-class SubscriptionTypeViewSet(viewsets.ModelViewSet):
-    queryset = SubscriptionType.objects.all()
-    serializer_class = SubscriptionTypeSerializer
 
 
 class SubscriptionViewSet(viewsets.ModelViewSet):

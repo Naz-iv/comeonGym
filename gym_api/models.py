@@ -10,19 +10,6 @@ from .choices import (
 )
 
 
-class SubscriptionType(models.Model):
-    sub_type = models.CharField(
-        max_length=63, choices=SUBSCRIPTION_TYPES_CHOICES, default="ONETIME"
-    )
-    number_of_workouts = models.IntegerField(
-        choices=NUM_OF_TRAININGS_CHOICES, default=1
-    )
-    price = models.IntegerField()
-
-    def __str__(self):
-        return f"{self.sub_type} | Тренувень: {self.number_of_workouts}"
-
-
 class Visitor(models.Model):
     user = models.ForeignKey(
         get_user_model(),
@@ -36,18 +23,22 @@ class Visitor(models.Model):
 
 
 class Subscription(models.Model):
-    subscription_type = models.ForeignKey(
-        SubscriptionType, on_delete=models.CASCADE, related_name="subscriptions"
+    sub_type = models.CharField(
+        max_length=63, choices=SUBSCRIPTION_TYPES_CHOICES, default="ONETIME"
+    )
+    number_of_workouts = models.IntegerField(
+        choices=NUM_OF_TRAININGS_CHOICES, default=1
     )
     brought_at = models.DateTimeField(auto_now_add=True)
     activated_at = models.DateTimeField(auto_now=True, null=True)
     is_valid = models.BooleanField(default=True)
     visit_count = models.IntegerField(default=0)
     visitor = models.ForeignKey(Visitor, related_name="subscriptions", on_delete=models.CASCADE)
+    price = models.IntegerField()
 
     @property
     def visits_remaining(self):
-        return self.subscription_type.number_of_workouts - self.visit_count
+        return self.number_of_workouts - self.visit_count
 
     @property
     def expiry_date(self):
@@ -56,7 +47,7 @@ class Subscription(models.Model):
         return self.activated_at + relativedelta(months=1)
 
     def __str__(self):
-        return (f"Тип: {self.subscription_type.sub_type} | Залишилось тренувань: {self.visits_remaining} "
+        return (f"Тип: {self.sub_type} | Залишилось тренувань: {self.visits_remaining} "
                 f"| Дійсний до: {self.expiry_date.strftime('%Y-%m-%d %H:%M')}")
 
 

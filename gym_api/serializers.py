@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import (
-    SubscriptionType,
     Subscription,
     Visitor,
     TrainingType,
@@ -8,12 +7,6 @@ from .models import (
     Training,
     Signup,
 )
-
-
-class SubscriptionTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SubscriptionType
-        fields = "__all__"
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):

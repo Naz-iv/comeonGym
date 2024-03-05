@@ -3,7 +3,6 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register("subscription-types", views.SubscriptionTypeViewSet)
 router.register("subscriptions", views.SubscriptionViewSet)
 router.register("visitors", views.VisitorViewSet)
 router.register("training-types", views.TrainingTypeViewSet)

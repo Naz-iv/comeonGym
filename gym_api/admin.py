@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import (
     TrainingType,
     Trainer,
-    SubscriptionType,
     Subscription,
     Training,
     Visitor,
@@ -11,7 +10,6 @@ from .models import (
 
 admin.site.register(TrainingType)
 admin.site.register(Trainer)
-admin.site.register(SubscriptionType)
 admin.site.register(Subscription)
 admin.site.register(Training)
 admin.site.register(Visitor)
