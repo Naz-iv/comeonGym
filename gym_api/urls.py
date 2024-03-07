@@ -7,15 +7,15 @@ router.register("subscriptions", views.SubscriptionViewSet)
 router.register("visitors", views.VisitorViewSet)
 router.register("training-types", views.TrainingTypeViewSet)
 router.register("trainers", views.TrainerViewSet)
-router.register("schedule", views.TrainingViewSet)
+router.register("trainings", views.TrainingViewSet)
 router.register("signups", views.SignupViewSet)
+router.register("prices", views.SubscriptionTypeViewSet)
+router.register("discounts", views.DiscountViewSet)
+router.register("schedule", views.ScheduleViewSet)
+
 
 urlpatterns = [
     path("", include(router.urls)),
-    # path("schedule/", views.index, name="schedule"),
-    # path("trainers/", views.index, name="trainers"),
-    # path("trainings/", views.index, name="trainings"),
-    # path("prices/", views.index, name="prices"),
 ]
 
 
